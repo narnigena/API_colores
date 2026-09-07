@@ -5,6 +5,7 @@ dotenv.config(); //esto es para leer el doc .env se puede subir a internet sin p
 import express from "express";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import cors from "cors";
 import { leerColores, crearColor, actualizarColor, borrarColor,buscarUsuario} from "./db.js";
 
 function autorizar(peticion,respuesta,siguiente){
@@ -28,6 +29,8 @@ function autorizar(peticion,respuesta,siguiente){
 
 
 const servidor = express();
+
+servidor.use(cors()); //cualquier dominio haga peticones, protegido por el TOKEN
 
 servidor.use(express.json());
 
